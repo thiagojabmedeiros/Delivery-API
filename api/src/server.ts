@@ -1,4 +1,4 @@
-import database from "./database.ts/db"
+import database from "./database/db"
 import app from "./app"
 
 const PORT = 3333
