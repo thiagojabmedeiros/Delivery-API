@@ -1,11 +1,11 @@
-import app from "./app"
 import database from "./database.ts/db"
+import app from "./app"
 
 const PORT = 3333
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
     try {
-        database.authenticate()
+        await database.authenticate()
         console.log(`server in running on ${PORT}`)
     } catch (error) {
         console.log("unable to connect database", error)

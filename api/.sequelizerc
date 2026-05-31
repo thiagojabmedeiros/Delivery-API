@@ -6,8 +6,8 @@ tsNode.register({
 const path = require('path')
 
 const sequelizeRc = {
-    config: path.resolve(__dirname, "src", "server.ts"),
+    config: path.resolve(__dirname, "src", "configs", "db-config.ts"),
     "migrations-path": path.resolve(__dirname, "src", "migrations")
 }
 
-module.export = sequelizeRc
+module.exports = sequelizeRc
