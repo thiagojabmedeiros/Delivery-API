@@ -19,9 +19,9 @@ class UserController {
 
         const user = await User.create({ name, role, email, password: hashedPWD })
         
-        const { password: _, ...UserWithoutPWD } = user.toJSON()
+        const { password: _, ...userWithoutPWD } = user.toJSON()
 
-        return response.status(201).json(UserWithoutPWD)
+        return response.status(201).json(userWithoutPWD)
     }
 } 
 
