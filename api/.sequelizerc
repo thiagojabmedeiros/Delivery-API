@@ -1,0 +1,13 @@
+const tsNode = require('ts-node')
+tsNode.register({
+    transpileOnly: true
+})
+
+const path = require('path')
+
+const sequelizeRc = {
+    config: path.resolve(__dirname, "src", "server.ts"),
+    "migrations-path": path.resolve(__dirname, "src", "migrations")
+}
+
+module.export = sequelizeRc
