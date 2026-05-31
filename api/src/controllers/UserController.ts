@@ -3,6 +3,7 @@ import z from "zod"
 import { hash } from "bcrypt"
 
 import User from "../models/User"
+import AppError from "../utils/AppError"
 
 class UserController {
     async create(request: Request, response: Response) {
@@ -15,6 +16,15 @@ class UserController {
 
         const { name, role, email, password } = bodySchema.parse(request.body)
         
+        const existentEmail = await User.findOne({
+            where: {
+                email: email
+            }
+        })
+        if (existentEmail) {
+            throw new AppError("another user already asigned this email", 400)
+        }
+
         const hashedPWD = await hash(password, 8)
 
         const user = await User.create({ name, role, email, password: hashedPWD })
