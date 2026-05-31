@@ -24,6 +24,29 @@ class DeliveryController {
 
         return response.json(delivery)
     }
+
+    async update(request: Request, response: Response) {
+        const paramsSchema = z.object({
+            id: z.uuid().trim()
+        })
+        const { id } = paramsSchema.parse(request.params)
+
+        const delivery = await Delivery.findByPk(id, {
+            attributes: ["id", "description", "status"]
+        })
+        if (!delivery) {
+            throw new AppError("order does not exist", 400)
+        }
+
+        const bodySchema = z.object({
+            status: z.enum(["coming to you", "delivered"])
+        })
+        const { status } = bodySchema.parse(request.body)
+
+        await delivery.update({ status })
+
+        return response.status(200).json(delivery)
+    }
 }
 
 export default DeliveryController

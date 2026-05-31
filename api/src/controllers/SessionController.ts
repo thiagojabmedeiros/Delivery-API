@@ -19,7 +19,7 @@ class SessionController {
             where: {
                 email: email
             },
-            attributes: ["name", "role", "email", "password"]
+            attributes: ["id", "name", "role", "email", "password"]
         })
 
         if (!user) {
@@ -27,16 +27,14 @@ class SessionController {
         }
         
         const validPWD = await compare(password, user.toJSON().password)
-
         if (!validPWD) {
             throw new AppError("invalid email or password", 400)
         }
         
-        const token = sign({ 
-            user_id: user.toJSON().id, user_role: user.toJSON().role }, 
-            authConfig.jwt.secret, {
-            expiresIn: authConfig.jwt.expiresIn
-        })
+        const userO = user.toJSON()
+        const { secret, expiresIn } = authConfig.jwt
+
+        const token = sign({ id: userO.id, role: userO.role }, secret, { expiresIn: expiresIn })
 
         const { password: _, ...userWithoutPWD } = user.toJSON()
 

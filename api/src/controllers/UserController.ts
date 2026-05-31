@@ -3,6 +3,7 @@ import z from "zod"
 import { hash } from "bcrypt"
 
 import User from "../models/User"
+import Delivery from "../models/Delivery"
 import AppError from "../utils/AppError"
 
 class UserController {
@@ -32,6 +33,29 @@ class UserController {
         const { password: _, ...userWithoutPWD } = user.toJSON()
 
         return response.status(201).json(userWithoutPWD)
+    }
+
+    async index(request: Request, response: Response) {
+        const paramsSchema = z.object({
+            id: z.uuid().trim()
+        })
+
+        const { id } = paramsSchema.parse(request.params)
+
+        const user = await User.findByPk(id)
+
+        if (!user) {
+            throw new AppError("user does not exist", 400)
+        }
+        const orders = await Delivery.findAll({
+            attributes: ["id", "description", "status", "created_at"]
+        })
+
+        if (orders.length == 0) {
+            return response.json({ message: "user has not ordered anything yet" })
+        }
+        
+        return response.json(orders)
     }
 } 
 
