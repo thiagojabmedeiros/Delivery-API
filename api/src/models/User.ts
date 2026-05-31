@@ -22,6 +22,10 @@ class User extends Model {
             underscored: true
         })
     }
+
+    static associate(models: any) {
+        this.hasMany(models.Delivery, { foreignKey: "user_id", as: "deliveries" })
+    }
 }
 
 export default User
