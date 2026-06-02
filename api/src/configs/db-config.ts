@@ -11,7 +11,7 @@ const config = {
     "host": process.env.DB_HOST as string,
     "dialect": process.env.DB_DIALECT as Dialect,
     "port": Number(process.env.DB_PORT),
-    "logging": true,
+    "logging": console.log,
     "define": {
       "timestamps": true,
       "underscored": true
