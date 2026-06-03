@@ -1,7 +1,7 @@
 import { Sequelize, Model, DataTypes } from "sequelize"
 
 class Delivery extends Model {
-    static initialize(sequelize: Sequelize) {
+    static initialize(connection: Sequelize) {
         this.init({
             id: {
                 type: DataTypes.UUID,
@@ -14,7 +14,8 @@ class Delivery extends Model {
                 defaultValue: "in progress"
             }
         }, {
-            sequelize,
+            sequelize: connection,
+            tableName: "deliveries",
             timestamps: true,
             underscored: true
         })
@@ -22,6 +23,7 @@ class Delivery extends Model {
 
     static associate(models: any) {
         this.belongsTo(models.User, { foreignKey: "user_id", as: "user" })
+        this.hasMany(models.DeliveryLog, { foreignKey: "delivery_id", as: "logs" })
     }
 }
 
