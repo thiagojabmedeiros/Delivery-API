@@ -10,9 +10,6 @@
     "lib": ["ES2024"],
     "types": ["node", "jest"],
 
-    // Other Outputs
-    "sourceMap": true,
-
     // Stricter Typechecking Options
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
