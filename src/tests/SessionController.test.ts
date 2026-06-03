@@ -8,7 +8,7 @@ describe("session controller tests", () => {
     let id: string
 
     beforeAll(async () => {
-        database.authenticate()
+        await database.authenticate()
     })
 
     afterAll(async () => {
@@ -25,7 +25,7 @@ describe("session controller tests", () => {
     it("tests if is possible to make a session and generate token", async () => {
         const responseUser = await request(app).post("/users").send({
             name: "thiago",
-            email: "thiago@email.com",
+            email: `thiago${Date.now()}@email.com`,
             password: "1234567"
         })
 
