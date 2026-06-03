@@ -5,6 +5,7 @@ import { hash } from "bcrypt"
 import User from "../models/User"
 import Delivery from "../models/Delivery"
 import AppError from "../utils/AppError"
+import app from "../app"
 
 class UserController {
     async create(request: Request, response: Response) {
@@ -55,7 +56,7 @@ class UserController {
         })
 
         if (orders.length == 0) {
-            return response.json({ message: "user has not ordered anything yet" })
+            throw new AppError("user has not ordered anything yet", 400)
         }
         
         return response.json(orders)

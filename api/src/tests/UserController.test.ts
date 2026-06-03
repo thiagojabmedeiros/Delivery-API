@@ -35,7 +35,7 @@ describe("user controller tests", () => {
         id = response.body.id
     })
 
-    it("test if can create users with same e-mail", async () => {
+    it("tests if can create users with same e-mail", async () => {
         const response = await request(app).post("/users").send({
             name: "bruno",
             role: "seller",
@@ -45,5 +45,12 @@ describe("user controller tests", () => {
 
         expect(response.statusCode).toBe(400)
         expect(response.body.message).toBe("another user already asigned this email")
+    })
+
+    it("tests if user has no order yet", async () => {
+        const response = await request(app).get(`/users/${id}/orders`)
+        
+        expect(response.body.message).toBe("user has not ordered anything yet")
+        expect(response.statusCode).toBe(400)
     })
 })
