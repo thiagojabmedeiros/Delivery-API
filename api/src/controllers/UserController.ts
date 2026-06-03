@@ -48,7 +48,10 @@ class UserController {
             throw new AppError("user does not exist", 400)
         }
         const orders = await Delivery.findAll({
-            attributes: ["id", "description", "status", "created_at"]
+            attributes: ["id", "description", "status", "created_at"],
+            where: {
+                user_id: id
+            }
         })
 
         if (orders.length == 0) {
