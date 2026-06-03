@@ -8,7 +8,7 @@ function verifyAuthorization(role: string[]) {
         }
 
         if (!role.includes(request.user.role)) {
-            throw new AppError("not authorizxed", 401)
+            throw new AppError("not authorized", 401)
         }
         
         return next()

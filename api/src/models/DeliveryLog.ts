@@ -12,7 +12,7 @@ class DeliveryLog extends Model {
             description: DataTypes.STRING
         },{
             sequelize: connection,
-            tableName: "delivery-logs",
+            tableName: "delivery_logs",
             timestamps: true,
             underscored: true
         })

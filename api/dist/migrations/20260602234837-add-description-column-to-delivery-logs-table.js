@@ -1,0 +1,16 @@
+'use strict';
+Object.defineProperty(exports, "__esModule", { value: true });
+const sequelize_1 = require("sequelize");
+/** @type {import('sequelize-cli').Migration} */
+module.exports = {
+    async up(queryInterface) {
+        await queryInterface.addColumn("delivery_logs", "description", {
+            type: sequelize_1.DataTypes.STRING,
+            allowNull: false
+        });
+    },
+    async down(queryInterface) {
+        await queryInterface.removeColumn("delivery_logs", "description");
+    }
+};
+//# sourceMappingURL=20260602234837-add-description-column-to-delivery-logs-table.js.map
