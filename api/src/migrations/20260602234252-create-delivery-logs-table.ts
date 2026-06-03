@@ -4,7 +4,7 @@ import { QueryInterface, DataTypes } from "sequelize";
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface: QueryInterface) {
-    await queryInterface.createTable("delivery-logs", {
+    await queryInterface.createTable("delivery_logs", {
       id: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
@@ -30,6 +30,6 @@ module.exports = {
   },
 
   async down (queryInterface: QueryInterface) {
-    await queryInterface.dropTable("delivery-logs")
+    await queryInterface.dropTable("delivery_logs")
   }
 };

@@ -5,7 +5,6 @@ import { hash } from "bcrypt"
 import User from "../models/User"
 import Delivery from "../models/Delivery"
 import AppError from "../utils/AppError"
-import app from "../app"
 
 class UserController {
     async create(request: Request, response: Response) {
