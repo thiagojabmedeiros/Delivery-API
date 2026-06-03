@@ -12,4 +12,6 @@ deliveryLogRoutes.use(ensureAuthenticate)
 
 deliveryLogRoutes.post("/:delivery_id", verifyAuthorization(["seller"]), deliveryLogController.create)
 
+deliveryLogRoutes.get("/:delivery_id/logs", verifyAuthorization(["seller", "costumer"]), deliveryLogController.index)
+
 export default deliveryLogRoutes

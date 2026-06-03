@@ -7,9 +7,9 @@ const deliveryRoutes = Router()
 import ensureAuthenticate from "../middlewares/ensure-authenticate"
 import verifyAuthorization from "../middlewares/verify-authorization"
 
-deliveryRoutes.use(ensureAuthenticate, verifyAuthorization(["seller"]))
+deliveryRoutes.use(ensureAuthenticate)
 
-deliveryRoutes.post("/", deliveryController.create)
-deliveryRoutes.patch("/:id", deliveryController.update)
+deliveryRoutes.post("/",  verifyAuthorization(["seller"]),deliveryController.create)
+deliveryRoutes.patch("/:id",  verifyAuthorization(["seller"]),deliveryController.update)
 
 export default deliveryRoutes
