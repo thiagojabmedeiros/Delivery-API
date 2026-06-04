@@ -31,7 +31,11 @@ const config = {
     "database": process.env.DB_NAME as string,
     "host": process.env.DB_HOST as string,
     "dialect": process.env.DB_DIALECT as Dialect,
-    "port": Number(process.env.DB_PORT)
+    "port": Number(process.env.DB_PORT),
+    "define": {
+      "timestamps": true,
+      "underscored": true
+    }
   }
 }
 

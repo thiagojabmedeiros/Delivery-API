@@ -5,7 +5,7 @@ import Delivery from "../models/Delivery"
 import DeliveryLog from "../models/DeliveryLog"
 
 import { Sequelize } from "sequelize"
-const database = new Sequelize(config.development)
+const database = new Sequelize(config.production)
 
 User.initialize(database)
 Delivery.initialize(database)
