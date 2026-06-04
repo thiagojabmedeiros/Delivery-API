@@ -11,6 +11,7 @@
     "build": "tsc",
     "start": "node ./dist/server.js"
   },
+  "type": "module",
   "author": "Thiago Medeiros",
   "license": "ISC",
   "dependencies": {
