@@ -31,6 +31,12 @@ const config = {
     "database": process.env.DB_NAME as string,
     "host": process.env.DB_HOST as string,
     "dialect": process.env.DB_DIALECT as Dialect,
+    "dialectOptions": {
+          "ssl": {
+            "require": true,
+            "rejectUnauthorized": false
+          }
+        },
     "port": Number(process.env.DB_PORT),
     "define": {
       "timestamps": true,
